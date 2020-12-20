@@ -24,15 +24,20 @@ void setup(void) {
 
 void loop(void) {
   u8g2.clearBuffer();
-  u8g2.setFont(u8g2_font_unifont_t_chinese2);// u8g2_font_7x14B_tr  
   u8g2.setFontDirection(0);//设置字体方向
   u8g2.clearBuffer();//清空缓存区
   float h = dht.readHumidity();//获取湿度
   float t = dht.readTemperature();//获取温度
-  u8g2.setCursor(20, 15);
-  u8g2.println(("湿度:"+(String)h+"%"));
-  u8g2.setCursor(20, 30);
-  u8g2.println(("温度:"+(String)t+"°C"));
+  u8g2.setCursor(0, 20);
+  u8g2.setFont(u8g2_font_wqy16_t_gb2312b);
+  u8g2.print("温度:");
+  u8g2.setFont(u8g2_font_crox5tb_tf);
+  u8g2.print(((String)t+"°C"));
+  u8g2.setCursor(0, 50);
+  u8g2.setFont(u8g2_font_wqy16_t_gb2312b);
+  u8g2.print("湿度:");
+  u8g2.setFont(u8g2_font_crox5tb_tf);
+  u8g2.print(((String)h+"%"));
   u8g2.sendBuffer();//写入缓存区
   delay(1000);//显示1秒
 }
